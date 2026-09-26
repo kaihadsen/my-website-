@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>NOIR — Classic Magazine</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #080808;
+      color: #f5f5f5;
+      font-family: "Inter", sans-serif;
+      line-height: 1.6;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 6%;
+      background: rgba(8, 8, 8, 0.94);
+      border-bottom: 1px solid #242424;
+      backdrop-filter: blur(12px);
+    }
+
+    .logo {
+      font-family: "Cinzel", serif;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 5px;
+    }
+
+    .logo span {
+      color: #d71920;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    nav a {
+      color: #ddd;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #d71920;
+    }
+
+    .premium-btn {
+      background: #d71920;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .premium-btn:hover {
+      background: white;
+      color: #111;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      padding: 70px 6%;
+      background:
+        linear-gradient(90deg, #080808 20%, rgba(8,8,8,0.65), rgba(8,8,8,0.15)),
+        url("https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+    }
+
+    .hero-content {
+      max-width: 650px;
+    }
+
+    .tag {
+      color: #d71920;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      font-family: "Cinzel", serif;
+      font-size: clamp(45px, 8vw, 90px);
+      line-height: 1.05;
+      margin: 18px 0;
+    }
+
+    .hero p {
+      color: #ccc;
+      max-width: 560px;
+      font-size: 17px;
+      margin-bottom: 28px;
+    }
+
+    .read-btn {
+      display: inline-block;
+      padding: 13px 25px;
+      background: white;
+      color: black;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 3px;
+      transition: 0.3s;
+    }
+
+    .read-btn:hover {
+      background: #d71920;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* SECTION */
+    section {
+      padding: 70px 6%;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 35px;
+      border-bottom: 1px solid #292929;
+      padding-bottom: 15px;
+    }
+
+    .section-title h2 {
+      font-family: "Cinzel", serif;
+      font-size: 30px;
+    }
+
+    .section-title span {
+      color: #d71920;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    /* CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      background: #111;
+      border: 1px solid #242424;
+      overflow: hidden;
+      transition: 0.35s;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: #d71920;
+    }
+
+    .card img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-content {
+      padding: 22px;
+    }
+
+    .category {
+      color: #d71920;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .card h3 {
+      font-family: "Cinzel", serif;
+      font-size: 21px;
+      margin: 10px 0;
+    }
+
+    .card p {
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    .date {
+      display: block;
+      margin-top: 15px;
+      color: #666;
+      font-size: 12px;
+    }
+
+    /* FEATURE */
+    .feature {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: center;
+      background: #0e0e0e;
+    }
+
+    .feature img {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+    }
+
+    .feature h2 {
+      font-family: "Cinzel", serif;
+      font-size: 42px;
+      line-height: 1.15;
+      margin: 15px 0;
+    }
+
+    .feature p {
+      color: #aaa;
+      margin-bottom: 25px;
+    }
+
+    /* QUOTE */
+    .quote {
+      text-align: center;
+      border-top: 1px solid #222;
+      border-bottom: 1px solid #222;
+    }
+
+    .quote h2 {
+      font-family: "Cinzel", serif;
+      font-size: clamp(25px, 5vw, 45px);
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .quote span {
+      display: block;
+      margin-top: 18px;
+      color: #d71920;
+      letter-spacing: 2px;
+      font-size: 12px;
+    }
+
+    /* NEWSLETTER */
+    .newsletter {
+      text-align: center;
+      background: #111;
+      border: 1px solid #292929;
+    }
+
+    .newsletter h2 {
+      font-family: "Cinzel", serif;
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    .newsletter p {
+      color: #aaa;
+      margin-bottom: 25px;
+    }
+
+    .newsletter form {
+      display: flex;
+      max-width: 550px;
+      margin: auto;
+    }
+
+    .newsletter input {
+      flex: 1;
+      padding: 15px;
+      background: #080808;
+      border: 1px solid #333;
+      color: white;
+      outline: none;
+    }
+
+    .newsletter button {
+      padding: 15px 22px;
+      background: #d71920;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 45px 6%;
+      border-top: 1px solid #222;
+      text-align: center;
+    }
+
+    footer .footer-logo {
+      font-family: "Cinzel", serif;
+      font-size: 30px;
+      letter-spacing: 5px;
+      margin-bottom: 12px;
+    }
+
+    footer p {
+      color: #666;
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 800px) {
+
+      nav {
+        padding: 15px 5%;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .premium-btn {
+        padding: 8px 12px;
+      }
+
+      .hero {
+        min-height: 75vh;
+        padding: 60px 6%;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .feature {
+        grid-template-columns: 1fr;
+      }
+
+      .feature img {
+        height: 300px;
+      }
+
+      .feature h2 {
+        font-size: 32px;
+      }
+
+      .newsletter form {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .newsletter button {
+        width: 100%;
+      }
+
+      section {
+        padding: 55px 6%;
+      }
+    }
+
+    /* ANIMATION */
+    .fade {
+      animation: fadeUp 0.9s ease both;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="logo">NOIR<span>.</span></div>
+
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#latest">Latest</a></li>
+      <li><a href="#stories">Stories</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+
+    <a href="#premium" class="premium-btn">PREMIUM</a>
+  </nav>
+
+
+  <!-- HERO -->
+  <header class="hero" id="home">
+    <div class="hero-content fade">
+
+      <div class="tag">The Classic Journal</div>
+
+      <h1>Stories<br>Beyond<br>Ordinary.</h1>
+
+      <p>
+        Discover culture, technology, lifestyle, ideas and stories
+        presented with a timeless classic aesthetic.
+      </p>
+
+      <a href="#latest" class="read-btn">EXPLORE STORIES</a>
+
+    </div>
+  </header>
+
+
+  <!-- LATEST -->
+  <section id="latest">
+
+    <div class="section-title">
+      <h2>Latest Stories</h2>
+      <span>NOIR / 01</span>
+    </div>
+
+    <div class="cards">
+
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80">
+
+        <div class="card-content">
+          <span class="category">Technology</span>
+
+          <h3>The Future Is Being Built Today</h3>
+
+          <p>
+            A look at the ideas and technology changing the way we live.
+          </p>
+
+          <span class="date">26 September 2026</span>
+        </div>
+      </article>
+
+
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=900&q=80">
+
+        <div class="card-content">
+          <span class="category">Style</span>
+
+          <h3>The Return of Classic Style</h3>
+
+          <p>
+            Why timeless design continues to influence modern fashion.
+          </p>
+
+          <span class="date">26 September 2026</span>
+        </div>
+      </article>
+
+
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80">
+
+        <div class="card-content">
+          <span class="category">Culture</span>
+
+          <h3>Places Worth Remembering</h3>
+
+          <p>
+            Exploring beautiful places and the stories behind them.
+          </p>
+
+          <span class="date">25 September 2026</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+
+  <!-- FEATURE -->
+  <section class="feature" id="stories">
+
+    <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85">
+
+    <div>
+
+      <span class="category">Editor's Choice</span>
+
+      <h2>Designing A Better Digital World</h2>
+
+      <p>
+        Great design is not only about appearance. It is about creating
+        experiences that feel simple, useful and memorable.
+      </p>
+
+      <a href="#" class="read-btn">READ ARTICLE</a>
+
+    </div>
+
+  </section>
+
+
+  <!-- QUOTE -->
+  <section class="quote">
+
+    <h2>
+      "Classic ideas never truly go out of style."
+    </h2>
+
+    <span>— NOIR EDITORIAL</span>
+
+  </section>
+
+
+  <!-- MORE STORIES -->
+  <section>
+
+    <div class="section-title">
+      <h2>More From NOIR</h2>
+      <span>NOIR / 02</span>
+    </div>
+
+    <div class="cards">
+
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=80">
+
+        <div class="card-content">
+          <span class="category">Future</span>
+          <h3>Inside Tomorrow's World</h3>
+          <p>Ideas that could shape the next generation.</p>
+        </div>
+      </article>
+
+
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=900&q=80">
+
+        <div class="card-content">
+          <span class="category">Design</span>
+          <h3>Why Simplicity Matters</h3>
+          <p>The power of clean and thoughtful design.</p>
+        </div>
+      </article>
+
+
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80">
+
+        <div class="card-content">
+          <span class="category">Travel</span>
+          <h3>Beyond The City</h3>
+          <p>Stories from roads less travelled.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+
+  <!-- PREMIUM -->
+  <section class="newsletter" id="premium">
+
+    <h2>Join NOIR Premium</h2>
+
+    <p>
+      Get exclusive stories, special editions and editorial updates.
+    </p>
+
+    <form onsubmit="subscribe(event)">
+
+      <input
+        type="email"
+        placeholder="Your email address"
+        required
+      >
+
+      <button type="submit">
+        JOIN NOW
+      </button>
+
+    </form>
+
+  </section>
+
+
+  <!-- ABOUT -->
+  <section id="about">
+
+    <div class="section-title">
+      <h2>About NOIR</h2>
+      <span>EST. 2026</span>
+    </div>
+
+    <p style="max-width:750px;color:#aaa;">
+      NOIR is a modern digital magazine inspired by classic editorial
+      design. Our goal is to present interesting stories with a clean,
+      premium and timeless visual experience.
+    </p>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="footer-logo">NOIR<span style="color:#d71920;">.</span></div>
+
+    <p>
+      © 2026 NOIR Magazine. All rights reserved.
+    </p>
+
+  </footer>
+
+
+  <script>
+    function subscribe(event) {
+      event.preventDefault();
+
+      alert("Thank you for joining NOIR Premium!");
+
+      event.target.reset();
+    }
+  </script>
+
+</body>
+</html>
